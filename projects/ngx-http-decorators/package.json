@@ -1,6 +1,6 @@
 {
   "name": "ngx-http-decorators",
-  "version": "14.0.0",
+  "version": "15.0.0",
   "license": "MIT",
 	"repository": {
 		"type": "GitHub",
@@ -25,8 +25,8 @@
 		"email": "therealpanda98@gmail.com"
 	},
   "peerDependencies": {
-    "@angular/common": "^14.0.0",
-    "@angular/core": "^14.0.0"
+    "@angular/common": "^15.0.0",
+    "@angular/core": "^15.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
