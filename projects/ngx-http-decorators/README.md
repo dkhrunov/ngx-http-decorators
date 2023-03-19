@@ -11,7 +11,8 @@ A library to simplify working with Http requests by describing these requests in
   - [Request with Body](#request-with-body)
   - [Request with Query Params](#request-with-query-params)
   - [Request with Headers](#request-with-headers)
-  - [Reqeust with HttpContext](#request-with-httpcontext)
+  - [Reqeust with HttpContext](#reqeust-with-httpcontext)
+  - [Cacheable request](#cacheable-request)
 - [Decorators](#decorators)
   - [@HttpController()](#httpcontroller)
   - [@Get()](#get)
@@ -25,6 +26,7 @@ A library to simplify working with Http requests by describing these requests in
   - [@Body()](#body)
   - [@Header()](#header)
   - [@Context()](#context)
+  - [@Cacheable()](#cacheable)
   
 ## Settings
 
@@ -302,6 +304,27 @@ export class PostService {
 }
 ```
 
+### Cacheable request
+
+To cache the result of a query, we can use the `@Cacheable()` decorator.
+The `@Cacheable()` decorator has several options, [more on the @Cacheable() decorator](#cacheable),
+but in most cases a decorator with no options is sufficient.
+
+```typescript
+@Injectable({
+  providedIn: 'root',
+})
+@HttpController('/api/posts')
+export class PostService {
+
+  @Cacheable()
+  @Get()
+  public getAll(): Observable<Post[]> {
+    return request(this.getAll);
+  }
+}
+```
+
 ## Decorators
 
 Decorators documentation.
@@ -561,3 +584,100 @@ export class PostService {
   }
 }
 ```
+
+### @Cacheable()
+
+Method decorator. Caching the result of the request, the cached request does not make a repeated http call.
+
+This decorator has optional options:
+- __`key`__ - The key under which the cached value will be stored, by default use this `'{{className}}_{{methodName}}_{{args}}'`. Can be just a string or a dynamic function that returns a key.
+- __`write`__ - A function that describes how to write http response data to the cache.
+- __`read`__ - A function that describes how to read cached data (if it exists) from the cache.
+- __`cache`__ - specifies a different cache store for the decorated method, accepts `InjectionToken<ICache>`, before using another cache store, you must provide it to the `NgxHttpDecoratorsModule`.
+
+```typescript
+@Injectable({
+  providedIn: 'root',
+})
+@HttpController('/api/posts')
+export class PostService {
+
+  @Cacheable({
+    key: 'GET_ALL_POSTS',
+    write: ({ incoming, existing}) => ({ ...existing, ...incoming })
+    read: ({ args, existing }) => {
+      if (!existing) {
+        // Has no cached values
+        return;
+      }
+
+      // There may be some logic here to retrieve data from the cache
+
+      return existing;
+    }
+  })
+  @Get()
+  public getAll(): Observable<Post[]> {
+    return request(this.getAll);
+  }
+}
+```
+
+You can also create your own cache store by creating a service and implementing the `ICache` interface.
+
+Cache service:
+```typescript
+const MY_HTT_CACHE_TOKEN = new InjectionToken<ICache>(
+  'MY_HTT_CACHE_TOKEN',
+  {
+    providedIn: 'root',
+    factory: () => new MyHttpCache()
+  }
+);
+
+@Injectable()
+export class MyHttpCache implements ICache {
+  private readonly cache = new Map<string, unknown>();
+
+  public set<T>(key: string, value: T): void {
+    this.cache.set(key, value);
+  }
+
+  public get<T>(key: string): T | undefined {
+    return this.cache.get(key) as T;
+  }
+
+  public delete(key: string | string[]): void {
+    if (Array.isArray(key)) {
+      key.forEach((k) => this.cache.delete(k));
+    } else {
+      this.cache.delete(key);
+    }
+  }
+
+  public clear(): void {
+    this.cache.clear();
+  }
+}
+```
+
+Used in @Cacheable() decaorator:
+
+```typescript
+@Injectable({
+  providedIn: 'root',
+})
+@HttpController('/api/posts')
+export class PostService {
+
+  @Cacheable({
+    key: 'GET_ALL_POSTS',
+    cache: MY_HTT_CACHE_TOKEN
+  })
+  @Get()
+  public getAll(): Observable<Post[]> {
+    return request(this.getAll);
+  }
+}
+```
+
