@@ -31,7 +31,7 @@ export type QueryParams = { [param: string]: any };
 export function Query(name: string): ParameterDecorator {
   return function (
     target: Object,
-    propertyKey: string | symbol,
+    propertyKey: string | symbol | undefined,
     parameterIndex: number
   ): void {
     extendObjectMetadata(
@@ -63,9 +63,13 @@ export function Query(name: string): ParameterDecorator {
 export function Queries(): ParameterDecorator {
   return function (
     target: Object,
-    propertyKey: string | symbol,
+    propertyKey: string | symbol | undefined,
     parameterIndex: number
   ): void {
+    if (propertyKey === undefined) {
+      throw new Error('@Queries decorator should define propertyKey argument ');
+    }
+
     Reflect.defineMetadata(
       QUERY_PARAMS_METADATA,
       parameterIndex,

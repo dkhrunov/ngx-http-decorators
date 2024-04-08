@@ -17,9 +17,13 @@ const BODY_METADATA = Symbol('ngx-http-decorators-meta:body');
 export function Body(): ParameterDecorator {
   return function (
     target: Object,
-    propertyKey: string | symbol,
+    propertyKey: string | symbol | undefined,
     parameterIndex: number
   ): void {
+    if (propertyKey === undefined) {
+      throw new Error('@Body decorator should define propertyKey argument ');
+    }
+
     Reflect.defineMetadata(BODY_METADATA, parameterIndex, target, propertyKey);
   };
 }

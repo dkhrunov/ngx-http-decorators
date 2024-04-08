@@ -30,7 +30,7 @@ export type PathParams = { [param: string]: any };
 export function Param(name: string): ParameterDecorator {
   return function (
     target: Object,
-    propertyKey: string | symbol,
+    propertyKey: string | symbol | undefined,
     parameterIndex: number
   ): void {
     extendObjectMetadata(
@@ -61,9 +61,13 @@ export function Param(name: string): ParameterDecorator {
 export function Params(): ParameterDecorator {
   return function (
     target: Object,
-    propertyKey: string | symbol,
+    propertyKey: string | symbol | undefined,
     parameterIndex: number
   ): void {
+    if (propertyKey === undefined) {
+      throw new Error('@Params decorator should define propertyKey argument ');
+    }
+
     Reflect.defineMetadata(
       PATH_PARAMS_METADATA,
       parameterIndex,
