@@ -1,34 +1,34 @@
 {
-  "name": "ngx-http-decorators",
-  "version": "15.1.0",
-  "license": "MIT",
+	"name": "ngx-http-decorators",
+	"version": "16.0.0",
+	"license": "MIT",
 	"repository": {
 		"type": "GitHub",
 		"url": "https://github.com/dkhrunov/ngx-http-decorators"
 	},
 	"keywords": [
 		"angular",
-    "angular http decorators",
+		"angular http decorators",
 		"decorators",
 		"http-client",
 		"http-client decorators",
 		"reflect-metadata",
-    "declarative-programming",
+		"declarative-programming",
 		"api-client",
 		"api-wrapper",
 		"api-rest",
 		"rest",
-    "ngx-http-decorators"
+		"ngx-http-decorators"
 	],
 	"author": {
 		"name": "Denis Khrunov",
 		"email": "therealpanda98@gmail.com"
 	},
-  "peerDependencies": {
-    "@angular/common": "^15.0.0",
-    "@angular/core": "^15.0.0"
-  },
-  "dependencies": {
-    "tslib": "^2.3.0"
-  }
+	"peerDependencies": {
+		"@angular/common": "^16.0.0",
+		"@angular/core": "^16.0.0"
+	},
+	"dependencies": {
+		"tslib": "^2.3.0"
+	}
 }
