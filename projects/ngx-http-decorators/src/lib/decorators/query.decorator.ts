@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import { isNumber, isNil, isObject } from '../utils/common-type-guards.util';
 import { extendObjectMetadata } from '../utils/extend-metadata.util';
 
-const QUERY_PARAMS_METADATA = Symbol('nhd-meta:queryParams');
+const QUERY_PARAMS_METADATA = Symbol('ngx-http-decorators-meta:queryParams');
 
 export type QueryParamsInMultyParameters = { [param: string]: number };
 export type QueryParamsInSingleParameter = number;

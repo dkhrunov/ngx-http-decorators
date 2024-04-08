@@ -99,11 +99,9 @@ const writeCacheValue = <TIncoming, TExisting = TIncoming>(
  * ----------------
  * @param options Опцци кеширования.
  */
-// eslint-disable-next-line prefer-arrow/prefer-arrow-functions, require-jsdoc, max-lines-per-function
 export function Cacheable<TIncoming, TExisting = TIncoming>(
   options?: CacheableOptions<TIncoming, TExisting>
 ): MethodDecorator {
-  // eslint-disable-next-line max-lines-per-function
   return (
     target: object,
     methodName: string | symbol,

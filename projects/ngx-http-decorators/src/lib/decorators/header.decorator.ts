@@ -3,7 +3,7 @@ import { HeaderDecoratorNotSupportedException } from '../exceptions/header-decor
 import { isString, isSymbol } from '../utils/common-type-guards.util';
 import { extendObjectMetadata } from '../utils/extend-metadata.util';
 
-const HEADERS_METADATA = Symbol('nhd-meta:headers');
+const HEADERS_METADATA = Symbol('ngx-http-decorators-meta:headers');
 
 export type Headers = { [header: string]: string };
 

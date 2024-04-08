@@ -1,7 +1,7 @@
 import { isString, isPlainObject } from "../utils/common-type-guards.util";
 
-const HOST_METADATA = Symbol('nhd-meta:host');
-const PATH_PREFIX_METADATA = Symbol('nhd-meta:pathPrefix');
+const HOST_METADATA = Symbol('ngx-http-decorators-meta:host');
+const PATH_PREFIX_METADATA = Symbol('ngx-http-decorators-meta:pathPrefix');
 
 /**
  * A class decorator to specify the path prefix for all requests in this class.

@@ -16,7 +16,7 @@ import { getHeaders } from './header.decorator';
 import { getPathParams } from './param.decorator';
 import { getQueryParams } from './query.decorator';
 
-const REQUEST_METADATA = Symbol('nhd-meta:request');
+const REQUEST_METADATA = Symbol('ngx-http-decorators-meta:request');
 
 /**
  * Request (method) Decorator. Send HTTP request to the specified path.

@@ -4,7 +4,7 @@ import { ICache } from '../abstractions';
 import { NgxHttpInMemoryCache } from '../in-memory-cache.service';
 
 export const DEFAULT_CACHE = new InjectionToken<ICache>(
-  'Nhd/DEFAULT_CACHE',
+  'ngx-http-decorators/DEFAULT_CACHE',
   {
     providedIn: NgxHttpDecoratorsModule,
     factory: () => inject(NgxHttpInMemoryCache)

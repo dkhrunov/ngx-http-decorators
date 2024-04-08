@@ -1,7 +1,7 @@
 import { HttpContext, HttpContextToken } from '@angular/common/http';
 import { isNil } from '../utils/common-type-guards.util';
 
-const CONTEXT_METADATA = Symbol('nhd-meta:context');
+const CONTEXT_METADATA = Symbol('ngx-http-decorators-meta:context');
 
 
 // TODO сделать как Header декоратор, 

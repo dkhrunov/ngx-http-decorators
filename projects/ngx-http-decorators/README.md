@@ -1,4 +1,4 @@
-# NgxHttpDecorators (NHD)
+# NgxHttpDecorators
 
 A library to simplify working with Http requests by describing these requests in a declarative style using decorators.
 
@@ -32,7 +32,7 @@ A library to simplify working with Http requests by describing these requests in
 
 To get started with __NgxHttpDecorators__, you need to import `NgxHttpDecoratorsModule` into your application's **app/core** module.
 
-Шf most of your requests use the same host (base server url), then it can be specified using the `REFLECTIVE_REQUEST_HOST_URL` InjectionToken as in the example below. 
+Шf most of your requests use the same host (base server url), then it can be specified using the `NGX_HTTP_DECORATORS_HOST_URL` InjectionToken as in the example below. 
 
 > It is not necessary to specify this, and further it will be shown how it will be possible to override this property in the Api service.
 

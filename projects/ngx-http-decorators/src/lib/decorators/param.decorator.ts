@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import { isNumber, isNil, isObject } from '../utils/common-type-guards.util';
 import { extendObjectMetadata } from '../utils/extend-metadata.util';
 
-const PATH_PARAMS_METADATA = Symbol('nhd-meta:pathParams');
+const PATH_PARAMS_METADATA = Symbol('ngx-http-decorators-meta:pathParams');
 
 export type PathParamsInMultyParameters = { [param: string]: number };
 export type PathParamsInSingleParameter = number;

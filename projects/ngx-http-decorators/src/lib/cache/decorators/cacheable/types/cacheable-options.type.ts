@@ -23,9 +23,9 @@ export type CacheableOptions<TIncoming, TExisting = TIncoming> = {
   read?: CacheRead<TIncoming, TExisting>;
   /**
    * A different cache storage is indicated, if not passed value,
-   * then the standard `HttpNgxHttpInMemoryCache` storage will be used.
+   * then the standard `NgxHttpInMemoryCache` storage will be used.
    *
-   * @default HttpNgxHttpInMemoryCache
+   * @default NgxHttpInMemoryCache
    */
   cache?: InjectionToken<ICache>;
 };

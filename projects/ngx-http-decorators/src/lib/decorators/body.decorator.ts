@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 
-const BODY_METADATA = Symbol('nhd-meta:body');
+const BODY_METADATA = Symbol('ngx-http-decorators-meta:body');
 
 /**
  * Parameter decorator. Specifies the `body` for the request with the value of the decorated parameter.
