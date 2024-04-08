@@ -11,7 +11,7 @@ import { isNil } from './utils/common-type-guards.util';
 import { PATH_PARAM_REGEXP } from './utils/path-param.regexp';
 
 @Injectable()
-export class NhdHttpClient {
+export class ReflectiveHttpClient {
   constructor(
     private readonly _http: HttpClient,
     @Inject(NGX_HTTP_DECORATORS_HOST_URL) private readonly _host: string

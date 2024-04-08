@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { BodyNotSupportedException } from '../exceptions/body-not-supported.exception';
 import { NgxHttpDecoratorsModule } from '../ngx-http-decorators.module';
-import { NhdHttpClient } from '../nhd-http-client.service';
+import { ReflectiveHttpClient } from '../reflective-http-client.service';
 import { DecoratedHttpRequestOptions } from '../types/decorated-http-request-options.interface';
 import { HttpMethod } from '../types/http-method.enum';
 import { HttpOptions } from '../types/http-options.interface';
@@ -46,8 +46,8 @@ export function Request<TResponse>(
         );
       }
 
-      // TODO replace to inject(NhdHttpClient) after updating to Angular v14
-      const http = NgxHttpDecoratorsModule.injector.get(NhdHttpClient);
+      // TODO replace to inject(ReflectiveHttpClient) after updating to Angular v14
+      const http = NgxHttpDecoratorsModule.injector.get(ReflectiveHttpClient);
 
       const headers = {
         // Class Header decorators

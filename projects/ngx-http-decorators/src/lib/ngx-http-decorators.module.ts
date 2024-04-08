@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Injector, NgModule } from '@angular/core';
-import { NhdHttpClient } from './nhd-http-client.service';
+import { ReflectiveHttpClient } from './reflective-http-client.service';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule],
-  providers: [NhdHttpClient],
+  providers: [ReflectiveHttpClient],
 })
 export class NgxHttpDecoratorsModule { 
   public static injector: Injector;
